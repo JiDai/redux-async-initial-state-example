@@ -19,7 +19,7 @@ class App extends React.Component {
 export default connect(
     state => {
         return {
-            // user: state.default.user,
+            user: state.user.user,
             loading: state.asyncInitialState.loading,
         }
     }

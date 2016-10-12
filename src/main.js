@@ -1,5 +1,5 @@
 import {createStore, combineReducers, applyMiddleware} from 'redux';
-import reducers from './reducers';
+import * as reducers from './reducers';
 import * as asyncInitialState from 'redux-async-initial-state';
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -22,9 +22,16 @@ const loadStore = () => {
     return new Promise(resolve => {
         fetch('https://jsonplaceholder.typicode.com/users/1')
             .then(response => {
-                return response.json()
+                return response.json();
             })
-            .then(resolve);
+            .then(user => {
+                resolve({
+                    user: {
+                        user: user,
+                        isFetching: false
+                    }
+                });
+            });
     });
 }
 
